@@ -1,22 +1,19 @@
 \documentclass[11pt,a4paper]{article}
 
 \usepackage{siunitx}
-\usepackage[version=4]{mhchem}
+%\usepackage[version=4]{mhchem}
 \usepackage{multirow}
+\usepackage{subfig}
 
 \usepackage{pgfgantt}
 %\usepackage{pdflscape}
-\usepackage[a4paper,margin=1in,landscape]{geometry}
+% \usepackage[a4paper,margin=1in,landscape]{geometry}
 
-\usepackage[pdftex]{color,graphicx}
-\pagestyle{plain}
+% \usepackage[pdftex]{color,graphicx}
+% \pagestyle{plain}
 \usepackage{geometry}
 \usepackage{rotating}
-%\usepackage{hyperref}
-
-
-
-\newgeometry{margin=2.0cm}
+\usepackage{hyperref}
 
 \newcommand{\ts}{\textsuperscript}
 \newcommand{\ic}{\texttt}
@@ -35,6 +32,7 @@
 
 \begin{document}
 
+% \newgeometry{margin=2.0cm}
 \newgeometry{margin=2.2cm, top=2.5cm}
 
 \begin{center}
@@ -58,6 +56,7 @@
 % Steps to do this (see thesis structure notes)
 % Stress physically justifiable
 % Point out links between hi-res <=> p'trized
+ 
 
 \subsection{Background reading}
 \label{sec:Background reading}
@@ -68,9 +67,17 @@
 % Shear climatology
 % Aiyyer and Thorncroft 2006
 % Houchi et al. 2010
-
 % Bonus
 % Davies et al. 2009
+
+\begin{itemize}
+  \item \cite{mapes2011parameterizing}
+  \item \cite{tompkins2017organization}
+  \item \cite{willett2017simple}
+  \item \cite{houchi2010comparison}
+  \item \cite{aiyyer2006climatology}
+  \item \cite{davies2009simple}
+\end{itemize}
 
 \section{Completed work}
 \label{sec:Completed work}
@@ -80,6 +87,17 @@
 
 \subsection{Cloud tracking}
 \label{sec:Cloud tracking}
+
+\begin{figure}[htp!]%
+    \centering
+    \subfloat[label 1]{{\includegraphics[width=5cm]{figs/u-an388_graph.png} }}%
+    \qquad
+    \subfloat[label 2]{{\includegraphics[width=5cm]{figs/u-an388_graph.png} }}%
+    \caption{2 Figures side by side}%
+    \label{fig:example}%
+\end{figure}
+
+\cite{wilson1998nowcasting},  \cite{plant2009statistical}
 
 \subsection{Classification of shear profiles}
 \label{sec:Classification of shear profiles}
@@ -165,9 +183,9 @@
 \subsection*{Repositories}
 
 \begin{itemize}
-  \item omnium: managing UM output: \href{https://github.com/markmuetz/omnium}
-  \item high-resolution analysis: \href{https://github.com/markmuetz/scaffold\_analysis}
-  \item climatology of shear analysis: \href{https://github.com/markmuetz/cosar\_analysis}
+  \item managing UM output: \href{https://github.com/markmuetz/omnium}{omnium}
+  \item high-resolution analysis: \href{https://github.com/markmuetz/scaffold_analysis}{scaffold\_analysis}
+  \item climatology of shear analysis: \href{https://github.com/markmuetz/cosar_analysis}{cosar\_analysis}
 \end{itemize}
 
 % Around 400 words.
