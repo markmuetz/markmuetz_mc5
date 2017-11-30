@@ -50,16 +50,28 @@
 
 \section{Project overview}
 \label{sec:Project Overview}
+% Where have I been, where am I and where am I going.
+
 % Overall goal.
 % * represent the org of convection in a conv p13n
 % * do in a scale-aware way.
 % Steps to do this (see thesis structure notes)
 % Stress physically justifiable
-% Point out links between hi-res <=> p'trized
- 
+% Point out links/deps between hi-res <=> p'trized
+With Monitoring Committee V comes the extra requirement of detailed planning of the rest of my PhD. This is a useful exercise in its own right, and focuses my mind on the tasks of generating the results and writing up my thesis. It is also a good time to take stock and think about what I have done to date, how to bring this together into a coherent thesis and what gaps there might be in this thesis.
+
+I started out getting up-to-speed with meteorology and numerical modelling, completing 6 assessed modules. This was followed by learning about the fields of convective parametrization and high-resolution modelling, putting into practice a lot of what I learnt by running the idealized UM (iUM). In phase 0 of my PhD plan, the goal was to make sure that the iUM was capable of being used for what we wanted to do; this has been done but took longer than expected due to the moisture conservation issues highlighted in previous MCs. Subsequent work, leading up to the companion paper for MC IV, built on learning how to use the iUM and on understanding and managing its flaws for high-resolution modelling. I also spent time reading up on the organization of convection, in the atmosphere in the form of squall lines, and in models in the form of squall lines, and through the mechanism of self-aggregation.
+
+To indicate how I will turn this work into a thesis, it is useful to set out the logical line of argument of my thesis. The goal remains to represent shear-induced organization of convection in a convective parametrization scheme, ideally in a way that is scale-aware. The line of argument starts by recognizing that shear can have an organizing effect on cloud fields. By looking at the range of shear profiles generated in coarse-resolution models, I will build a number of Representative Profiles (RPs), that reduce the parameter space of shear to something manageable. The second strand is to use high-resolution models to investigate how shear-induced organization affects key aspects of the cloud field, for example the lifetime of the convection, the vertical momentum transports and the statistics of mass flux in the cloud field. This information, coupled with a diagnosis of which RP a given grid-column is in, can then be used to modify the convective parametrization scheme in the coarse-resolution model.
+
+There are still blanks to be filled in in the remaining part of my PhD. How to generate the RPs? I have done some experimental work to classify these profiles using a machine learning technique, but this needs to be extended and the analysis checked more thoroughly (see section XXX). How to modify the convective parametrization? We have some ideas how this could work (see section XXX), but these will need to be tested. 
+
+Overall, I am pleased with how my PhD is going. Although I have not accomplished all the things laid out in last MC report's "Future work" section, I believe I have done an equivalent amount of work. My placement at the Met Office meant that it was sensible to re-arrange the order in which I carried out my PhD plan, looking into how I might go about modifying a convective parametrization scheme before carrying out some of the high-resolution modelling. Finding a potential way of reducing the parameter space of the shear profiles also means that the high-resolution modelling has been pushed further back in my updated plan. 
 
 \subsection{Background reading}
 \label{sec:Background reading}
+
+Taking on board the comments from the last MC, I have read more up-to-date 
 % Conv p13n + org.
 % Mapes and Neale 2011
 % Willet and Whitall 2017
@@ -90,14 +102,14 @@
 
 \begin{figure}[htp!]%
     \centering
-    \subfloat[label 1]{{\includegraphics[width=7cm]{figs/atmos_S0_1km_cloud_tracking_z1_t1_all_lifetimes.png} }}%
+    \subfloat[S0, all lifetimes]{{\includegraphics[width=7cm]{figs/atmos_S0_1km_cloud_tracking_z1_t1_all_lifetimes.png} }}%
     \qquad
-    \subfloat[label 1]{{\includegraphics[width=7cm]{figs/atmos_S0_1km_cloud_tracking_z1_t1_nonlinear_lifetimes.png} }}%
+    \subfloat[S0, complex lifetimes]{{\includegraphics[width=7cm]{figs/atmos_S0_1km_cloud_tracking_z1_t1_nonlinear_lifetimes.png} }}%
     \qquad
-    \subfloat[label 1]{{\includegraphics[width=7cm]{figs/atmos_S4_1km_cloud_tracking_z1_t1_all_lifetimes.png} }}%
+    \subfloat[S4, all lifetimes]{{\includegraphics[width=7cm]{figs/atmos_S4_1km_cloud_tracking_z1_t1_all_lifetimes.png} }}%
     \qquad
-    \subfloat[label 1]{{\includegraphics[width=7cm]{figs/atmos_S4_1km_cloud_tracking_z1_t1_nonlinear_lifetimes.png} }}%
-    \caption{2 Figures side by side}%
+    \subfloat[S4, complex lifetimes]{{\includegraphics[width=7cm]{figs/atmos_S4_1km_cloud_tracking_z1_t1_nonlinear_lifetimes.png} }}%
+    \caption{Distribution of cloud lifetimes for S0 (top) and S4 (bottom). Left shows all cloud lifetimes, right shows complex lifetimes only. Statistics were gathered over 10 days of simulation.}%
     \label{fig:example}%
 \end{figure}
 
