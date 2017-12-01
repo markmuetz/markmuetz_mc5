@@ -81,14 +81,13 @@ Overall, I am pleased with how my PhD is going. Although I have not accomplished
 % Bonus
 % Davies et al. 2009
 
-\begin{itemize}
-  \item \cite{mapes2011parameterizing}
-  \item \cite{tompkins2017organization}
-  \item \cite{willett2017simple}
-  \item \cite{houchi2010comparison}
-  % \item \cite{aiyyer2006climatology}
-  % \item \cite{davies2009simple}
-\end{itemize}
+To start to get to grips with some work looking at wind profile and shear climatologies, I read \cite{houchi2010comparison}. They look into the zonal and meridional profiles of $u$ and $\frac{du}{dz}$ in both radiosonde observations and ECMWF \SI{12}{hr} forecasts. Although the motivation of the work is different from mine, they are interested in using the ECMWF forecasts to model how a satellite will perform, some of the ideas may be useful and it is something to compare against. However, they were looking at comparisons between colocated observations and interpolated model output, and they were interested in a larger depth of atmosphere, from the surface to \SI{35}{km}.
+
+In \cite{mapes2011parameterizing}, they look at the link between entrainment as formulated in a convective parametrization and the behaviour of the model. They identify the ``entrainment dilemma'', whereby a value of the entrainment rate that is too high leads to a model that is unstable to explicit convection. Conversely, an entrainment rate that is too low leads to too much deep convection, and a corresponding deterioration of the space and time distributions and variability. To ameliorate this situation, the develop a 2D dimensionless prognostic \textit{org} that represents then subgrid organization of a given grid-column. Rain evaporation is taken as a source or \textit{org}, which can be advected horizontally. \textit{org} acts to reduce the entrainment rate in a grid-column, thereby acting as a time-lagged positive feedback on the parametrized convection. 
+
+\cite{willett2017simple} take a similar approach. They again change the entrainment rate through a new prognostic variable. This time it is a 3D prognostic variable, which they argue makes it simpler to advect around as there is not need to work out an effective steering level as in \cite{mapes2011parameterizing}. The source of the prognostic is taken as being the precipitation, as this is related to the strength of the convection.
+
+Finally, a look at \cite{tompkins2017organization} examines entrainment affects organization from a different perspective - that of a Cloud Resolving Model (CRM). In my project, I am aiming to link entrainment in the convective parametrization to results from a CRM, so this serves as an introduction to some of the concepts involved. ...
 
 \section{Completed work}
 \label{sec:Completed work}
