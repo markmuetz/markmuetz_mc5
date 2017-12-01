@@ -62,16 +62,15 @@ With Monitoring Committee V comes the extra requirement of detailed planning of 
 
 I started out getting up-to-speed with meteorology and numerical modelling, completing 6 assessed modules. This was followed by learning about the fields of convective parametrization and high-resolution modelling, putting into practice a lot of what I learnt by running the idealized UM (iUM). In phase 0 of my PhD plan, the goal was to make sure that the iUM was capable of being used for what we wanted to do; this has been done but took longer than expected due to the moisture conservation issues highlighted in previous MCs. Subsequent work, leading up to the companion paper for MC IV, built on learning how to use the iUM and on understanding and managing its flaws for high-resolution modelling. I also spent time reading up on the organization of convection, in the atmosphere in the form of squall lines, and in models in the form of squall lines, and through the mechanism of self-aggregation.
 
-To indicate how I will turn this work into a thesis, it is useful to set out the logical line of argument of my thesis. The goal remains to represent shear-induced organization of convection in a convective parametrization scheme, ideally in a way that is scale-aware. The line of argument starts by recognizing that shear can have an organizing effect on cloud fields. By looking at the range of shear profiles generated in coarse-resolution models, I will build a number of Representative Profiles (RPs), that reduce the parameter space of shear to something manageable. The second strand is to use high-resolution models to investigate how shear-induced organization affects key aspects of the cloud field, for example the lifetime of the convection, the vertical momentum transports and the statistics of mass flux in the cloud field. This information, coupled with a diagnosis of which RP a given grid-column is in, can then be used to modify the convective parametrization scheme in the coarse-resolution model.
+To indicate how I will turn this work into a thesis, it is useful to set out the logical line of argument of my thesis. The goal remains to represent shear-induced organization of convection in a convective parametrization scheme, ideally in a way that is scale-aware. The line of argument starts by recognizing that shear can have an organizing effect on cloud fields. By looking at the range of wind profiles generated in coarse-resolution models, I will build a number of Representative Wind Profiles (RWPs), that reduce the parameter space to something manageable. The second strand is to use high-resolution models to investigate how shear-induced organization affects key aspects of the cloud field, for example the lifetime of the convection, the vertical momentum transports and the statistics of mass flux in the cloud field. This information, coupled with a diagnosis of which RWP a given grid-column is in, can then be used to modify the convective parametrization scheme in the coarse-resolution model.
 
-There are still blanks to be filled in in the remaining part of my PhD. How to generate the RPs? I have done some experimental work to classify these profiles using a machine learning technique, but this needs to be extended and the analysis checked more thoroughly (see section XXX). How to modify the convective parametrization? We have some ideas how this could work (see section XXX), but these will need to be tested. 
+There are still blanks to be filled in in the remaining part of my PhD. How to generate the RWPs? I have done some experimental work to classify these profiles using a machine learning technique, but this needs to be extended and the analysis checked more thoroughly (see section XXX). How to modify the convective parametrization? We have some ideas how this could work (see section XXX), but these will need to be tested. 
 
-Overall, I am pleased with how my PhD is going. Although I have not accomplished all the things laid out in last MC report's "Future work" section, I believe I have done an equivalent amount of work. My placement at the Met Office meant that it was sensible to re-arrange the order in which I carried out my PhD plan, looking into how I might go about modifying a convective parametrization scheme before carrying out some of the high-resolution modelling. Finding a potential way of reducing the parameter space of the shear profiles also means that the high-resolution modelling has been pushed further back in my updated plan. 
+Overall, I am pleased with how my PhD is going. Although I have not accomplished all the things laid out in last MC report's ``Future work'' section, I believe I have done an equivalent amount of work. My placement at the Met Office meant that it was sensible to re-arrange the order in which I carried out my PhD plan, looking into how I might go about modifying a convective parametrization scheme before carrying out some of the high-resolution modelling. Finding a potential way of reducing the parameter space of the shear profiles also means that the high-resolution modelling has been pushed further back in my updated plan. 
 
 \subsection{Background reading}
 \label{sec:Background reading}
 
-Taking on board the comments from the last MC, I have read more up-to-date 
 % Conv p13n + org.
 % Mapes and Neale 2011
 % Willet and Whitall 2017
@@ -87,8 +86,8 @@ Taking on board the comments from the last MC, I have read more up-to-date
   \item \cite{tompkins2017organization}
   \item \cite{willett2017simple}
   \item \cite{houchi2010comparison}
-  \item \cite{aiyyer2006climatology}
-  \item \cite{davies2009simple}
+  % \item \cite{aiyyer2006climatology}
+  % \item \cite{davies2009simple}
 \end{itemize}
 
 \section{Completed work}
@@ -110,13 +109,23 @@ Taking on board the comments from the last MC, I have read more up-to-date
     \qquad
     \subfloat[S4, complex lifetimes]{{\includegraphics[width=7cm]{figs/atmos_S4_1km_cloud_tracking_z1_t1_nonlinear_lifetimes.png} }}%
     \caption{Distribution of cloud lifetimes for S0 (top) and S4 (bottom). Left shows all cloud lifetimes, right shows complex lifetimes only. Statistics were gathered over 10 days of simulation.}%
-    \label{fig:example}%
+    \label{fig:cloud_lifetimes}%
 \end{figure}
 
 \cite{wilson1998nowcasting},  \cite{plant2009statistical}
 
 \subsection{Classification of shear profiles}
 \label{sec:Classification of shear profiles}
+
+\begin{figure}[htp!]%
+    \centering
+    \subfloat[]{{\includegraphics[width=7cm]{figs/atmos_None_shear_profile_classification_analysis_use_pca-True_filt-cape_profile-5_n_clust-19_ci-12.png} }}%
+    \qquad
+    \subfloat[]{{\includegraphics[width=7cm]{figs/atmos_None_shear_profile_classification_analysis_use_pca-True_filt-cape_profile-5_n_clust-19_ci-17.png} }}%
+    \caption{Shear profiles classified into different RWPs. (a) shows reasonable classification success with relatively distinct profiles classified together, whereas (b) shows large variation between the individual profiles.}%
+    \label{fig:shear_profiles}%
+\end{figure}
+
 
 \subsection{Modifications to the Met Office UM based on shear}
 \label{sec:um_mod}
