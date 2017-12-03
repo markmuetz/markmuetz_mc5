@@ -95,8 +95,22 @@ Finally, a look at \cite{tompkins2017organization} examines entrainment affects 
 \subsection{Progress overview}
 \label{sec:Progress overview}
 
+In terms of sticking to the work laid out in the last MC, I have made good progress on cloud tracking, doing all the work presented here at \SI{1}{km} resolution (Section \ref{sec:Cloud tracking}). I worked on reducing the spin-up time by using lower-resolution profiles of $\theta$ and water vapour, work which will be even more useful in terms of saving computation time at higher resolution. I have not done more work at \SI{250}{m} resolution yet, nor have I run a stochastic parametrization scheme in either idealized or global simulations. Instead, I laid the foundations for other parts of my PhD with the shear classification work and making modifications to the \cite{gregory1990mass} scheme as set out in Sections \ref{sec:Classification of shear profiles} and \ref{sec:um_mod}.
+
 \subsection{Cloud tracking}
 \label{sec:Cloud tracking}
+
+From analysing cloud tracks, useful information can be gleaned on e.g. cloud lifetimes that I might be able to use to modify a convective parametrization scheme. The cloud tracking used here uses an approach that is a combination of Juwon Kim's cloud tracking and the method of \cite{plant2009statistical}. 
+%The reason that I chose not to use Juwon's work without modification was that it was developed for a different reason - tracking clouds in real world situations with a changing wind vector across the domain (my idealized work used a constant wind over the domain). \cite{plant2009statistical} method was integrated directly into the model, this was not possible for me although the bulk of the ideas come from this method. 
+The method works by comparing two snapshots of the cloud field at a given height a certain time apart, in my case I use \SI{2}{km} and \SI{5}{min}. To calculate overlaps, the maximum correlation vector between the two fields is calculated, and this is used to project the cloud field at the first snapshot to where it would be moved to by the time of the second snapshot. This idea and code was taken from Juwon's method. Then the method of \cite{plant2009statistical} is applied, working out the number of merges and splits and handling edge cases such as when two clouds split and merge into two separate clouds (see Figure \todo{XXX}).
+
+I then applied this method to data from the last \todo{XXX} days from a \SI{1}{km} resolution run, the results from the no shear and strong shear experiments (S0 and S4) are presented in Figure \ref{fig:cloud_lifetimes}. 
+The distribution is bimodal, with the first mode showing a large number of short-lived clouds. The second mode peaks at a lifetime of around \SI{50}{min}. 
+The results from S0 for all cloud lifetimes are in line with previous modelling work \cite{plant2008stochastic} and observations \todo{cite}.
+
+The distribution can be further analysed by splitting it into simple and complex lifetimes - lifetimes that contain no merges or splits and those that do. The complex lifetimes distribution for S0 is shown in subfigure \ref{fig:cloud_lifetimes} (b), where it is seen that complex lifetimes are longer than all lifetimes, and there are far fewer with very short lifetimes. 
+
+Comparing the equivalent subfigures for S4, two main points jump out. The first is that the number of short-lived clouds for all lifetimes is increased. Speculatively, this could be due to enhanced shear above the boundary layer increasing entrainment and therefor decreasing cloud lifetime. The second is that for S4, the distribution is shifted towards longer lifetimes. The mean lifetime for these clouds is \todo{XXX}, whereas for S0 it is \todo{XXX}.
 
 \begin{figure}[htp!]%
     \centering
@@ -126,14 +140,14 @@ Finally, a look at \cite{tompkins2017organization} examines entrainment affects 
 \end{figure}
 
 
-\subsection{Modifications to the Met Office UM based on shear}
+\subsection{Modifications to the UM based on shear}
 \label{sec:um_mod}
 
 \section{Future work}
 \label{sec:Future work}
 
-\subsection{Shear climatology in the Met Office UM}
-\label{sec:Shear climatology in the Met Office UM}
+\subsection{Shear climatology in the UM}
+\label{sec:Shear climatology in the UM}
 
 \subsection{High-resolution idealized modelling}
 \label{sec:High-resolution idealized modelling}
