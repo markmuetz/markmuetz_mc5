@@ -81,7 +81,7 @@ Overall, I am pleased with how my PhD is going. Although I have not accomplished
 % Bonus
 % Davies et al. 2009
 
-To start to get to grips with some work looking at wind profile and shear climatologies, I read \cite{houchi2010comparison}. They look into the zonal and meridional profiles of $u$ and $\frac{du}{dz}$ in both radiosonde observations and ECMWF \SI{12}{hr} forecasts. Although the motivation of the work is different from mine, they are interested in using the ECMWF forecasts to model how a satellite will perform, some of the ideas may be useful and it is something to compare against. However, they were looking at comparisons between colocated observations and interpolated model output, and they were interested in a larger depth of atmosphere, from the surface to \SI{35}{km}.
+To start to get to grips with some work looking at wind profile and shear climatologies, I read \cite{houchi2010comparison}. They look into the zonal and meridional profiles of $u$ and $\frac{du}{dz}$ in both radiosonde observations and ECMWF \SI{12}{hr} forecasts. Although the motivation of the work is different from mine, they are interested in using the ECMWF forecasts to model how a satellite will perform, some of the ideas may be useful and it is something to compare against. However, they were looking at comparisons between co-located observations and interpolated model output, and they were interested in a larger depth of atmosphere, from the surface to \SI{35}{km}.
 
 In \cite{mapes2011parameterizing}, they look at the link between entrainment as formulated in a convective parametrization and the behaviour of the model. They identify the ``entrainment dilemma'', whereby a value of the entrainment rate that is too high leads to a model that is unstable to explicit convection. Conversely, an entrainment rate that is too low leads to too much deep convection, and a corresponding deterioration of the space and time distributions and variability. To ameliorate this situation, the develop a 2D dimensionless prognostic \textit{org} that represents then subgrid organization of a given grid-column. Rain evaporation is taken as a source or \textit{org}, which can be advected horizontally. \textit{org} acts to reduce the entrainment rate in a grid-column, thereby acting as a time-lagged positive feedback on the parametrized convection. 
 
@@ -100,6 +100,8 @@ In terms of sticking to the work laid out in the last MC, I have made good progr
 \subsection{Cloud tracking}
 \label{sec:Cloud tracking}
 
+%\cite{wilson1998nowcasting},  \cite{plant2009statistical}
+
 From analysing cloud tracks, useful information can be gleaned on e.g. cloud lifetimes that I might be able to use to modify a convective parametrization scheme. The cloud tracking used here uses an approach that is a combination of Juwon Kim's cloud tracking and the method of \cite{plant2009statistical}. 
 %The reason that I chose not to use Juwon's work without modification was that it was developed for a different reason - tracking clouds in real world situations with a changing wind vector across the domain (my idealized work used a constant wind over the domain). \cite{plant2009statistical} method was integrated directly into the model, this was not possible for me although the bulk of the ideas come from this method. 
 The method works by comparing two snapshots of the cloud field at a given height a certain time apart, in my case I use \SI{2}{km} and \SI{5}{min}. To calculate overlaps, the maximum correlation vector between the two fields is calculated, and this is used to project the cloud field at the first snapshot to where it would be moved to by the time of the second snapshot. This idea and code was taken from Juwon's method. Then the method of \cite{plant2009statistical} is applied, working out the number of merges and splits and handling edge cases such as when two clouds split and merge into two separate clouds (see Figure \todo{XXX}).
@@ -110,7 +112,7 @@ The results from S0 for all cloud lifetimes are in line with previous modelling 
 
 The distribution can be further analysed by splitting it into simple and complex lifetimes - lifetimes that contain no merges or splits and those that do. The complex lifetimes distribution for S0 is shown in subfigure \ref{fig:cloud_lifetimes} (b), where it is seen that complex lifetimes are longer than all lifetimes, and there are far fewer with very short lifetimes. 
 
-Comparing the equivalent subfigures for S4, two main points jump out. The first is that the number of short-lived clouds for all lifetimes is increased. Speculatively, this could be due to enhanced shear above the boundary layer increasing entrainment and therefor decreasing cloud lifetime. The second is that for S4, the distribution is shifted towards longer lifetimes. The mean lifetime for these clouds is \todo{XXX}, whereas for S0 it is \todo{XXX}.
+Comparing the equivalent subfigures for S4, two main points jump out. The first is that the number of short-lived clouds for all lifetimes is increased. Speculatively, this could be due to enhanced shear above the boundary layer increasing entrainment and therefore decreasing cloud lifetime. The second is that for S4, the distribution is shifted towards longer lifetimes. The mean lifetime for these clouds is \todo{XXX}, whereas for S0 it is \todo{XXX}.
 
 \begin{figure}[htp!]%
     \centering
@@ -125,23 +127,37 @@ Comparing the equivalent subfigures for S4, two main points jump out. The first 
     \label{fig:cloud_lifetimes}%
 \end{figure}
 
-\cite{wilson1998nowcasting},  \cite{plant2009statistical}
-
 \subsection{Classification of shear profiles}
 \label{sec:Classification of shear profiles}
+
+My work so far has been oriented towards understanding how shear affects cloud fields. However, the aim is to information from this work to modify a convective parametrization scheme. This requires being able to link the shear as seen by a model grid-column, to some change to the parametrization scheme. One way of doing this is to classify the shear in a grid-column, as presented here.
+
+To find the shear profiles for classification, I ran a standard Met Office GA7.0 run (vn10.7 \todo{check}). Initially, I ran this for one day, and took results from the tropics (defined as \ang{30}N - \ang{30}S) at a frequency of every \SI{6}{hr}. I outputed the $u$ and $v$ profiles on 6 pressure levels of: \SI{900}, \todo{get}, \SI{200}{hPa}. The profiles were optionally filtered based on whether there was CAPE $>$ \SI{500}{J.kg^{-1}} or grid-scale ascent (w $>$ \SI{0}{m.s^{-1}}. To group the profiles, I turned each pair of $u$ and $v$ profiles into one sample with 12 values or dimensions, and ran a Principal Component Analysis algorithm on it to reduce the number of dimensions to 5 (this explains over 90\% of the variance of the profiles). I then ran a k-means clustering algorithm to group the profiles.
+
+Figure \ref{fig:shear_profiles} shows the results from this analysis, with the profiles being filtered on CAPE $>$ \SI{500}{J.kg^{-1}}. Subfigure (a) shows a reasonably successful grouping, the low level shear is aligned for both wind components and the spread between the profiles is not too large. Subfigure (b) shows a group of profiles where the process has been less successful; there is large spread between the different profiles at all levels and important features in some profiles are not seen in others.
+
+This is a work in progress. I would like to continue this over the next couple of months because I believe it holds promise for linking the two strands of my thesis. My supervisors and I have discussed ways in which this could be improved, such as deciding which of these profiles are interesting from a shear perspective, processing the profiles first to normalize them about a given shear angle and removing the dependence on higher levels as this is unlikely to affect shear induced organization.
 
 \begin{figure}[htp!]%
     \centering
     \subfloat[]{{\includegraphics[width=7cm]{figs/atmos_None_shear_profile_classification_analysis_use_pca-True_filt-cape_profile-5_n_clust-19_ci-12.png} }}%
     \qquad
     \subfloat[]{{\includegraphics[width=7cm]{figs/atmos_None_shear_profile_classification_analysis_use_pca-True_filt-cape_profile-5_n_clust-19_ci-17.png} }}%
-    \caption{Shear profiles classified into different RWPs. (a) shows reasonable classification success with relatively distinct profiles classified together, whereas (b) shows large variation between the individual profiles.}%
+    \caption{\todo{invert y-axis!} Shear profiles classified into different RWPs, $u$ is blue and $v$ is red. (a) shows reasonable classification success with relatively distinct profiles classified together, whereas (b) shows large variation between the individual profiles.}%
     \label{fig:shear_profiles}%
 \end{figure}
 
 
 \subsection{Modifications to the UM based on shear}
 \label{sec:um_mod}
+
+When I was on my Met Office placement (see Section \ref{sec:Met Office placement}), I learnt how to make modifications to the UM. The goal was to add a link between the shear in a grid-column to the convection scheme. The emphasis at this stage was more in terms of the technicalities of how to make the changes rather than exactly what changes to make, although the final changes I make may well end up being similar to what I have done. The change was to modify the entrainment rate of the scheme based on the shear in a grid-column, taking a cue from my work looking at cloud lifetimes in CRMs. The difficulty is that the work I have done on lifetimes suggests that I should change something corresponding to the cumulus lifetime in the parametrization scheme, however \cite{gregory1990mass} has no such parameter. Therefore shear was chosen as an expedient proxy to this for now. N.B. other schemes, such as \cite{plant2008stochastic} do represent this explicitly, and therefore might be more suitable 
+
+The modifications involved adding in new diagnositcs: the bulk shear and the Bulk Richardson Number (BRN). They also involved passing namelist settings into the UM to e.g. turn the new `shear aware' scheme on. The shear information had to be passed into the convection scheme to where the entrainment rate is calculated, and used to modify this. Given that my knowledge of Fortran had been fairly superficial before now, I also had to learn about some of its quirks. I made changes in keeping with the Met Office's best practices, creating a ticket (#3599) and branch to describe and implement that changes.
+
+To verify the new diagnostics I had added were correct, I outputted some standard ($\theta$, $u$, $v$, orography) to perform the same calculation offline in Python. This involved careful matching up of horizontal C-grids, Charney-Phillips staggered vertical grids and $\sigma$ scaled height coords as well as outputting the standard data one timestep before the new diagnostic. After numerous bugs, mainly due to array indexing/passing into subroutines, had been found and eliminated, good agreement was seen between the two calculations (differences were small and I believe due to the packing precision of the diagnostics).
+
+From here I could use the BRN to affect the deep convection scheme. The change was rather arbitrary - a BRN $<$ 10 was used to reduce the entrainment by 5\%. Examined over the course of 1 day, the change had a small but growing effect on the model state, indicating that the code was being exercised and was having an effect. I will be able to build on this work when it comes to running the parametrized tests later in my PhD.
 
 \section{Future work}
 \label{sec:Future work}
