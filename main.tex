@@ -132,7 +132,7 @@ Comparing the equivalent subfigures for S4, two main points jump out. The first 
 
 My work so far has been oriented towards understanding how shear affects cloud fields. However, the aim is to information from this work to modify a convective parametrization scheme. This requires being able to link the shear as seen by a model grid-column, to some change to the parametrization scheme. One way of doing this is to classify the shear in a grid-column, as presented here.
 
-To find the shear profiles for classification, I ran a standard Met Office GA7.0 run (vn10.7 \todo{check}). Initially, I ran this for one day, and took results from the tropics (defined as \ang{30}N - \ang{30}S) at a frequency of every \SI{6}{hr}. I outputed the $u$ and $v$ profiles on 6 pressure levels of: \SI{900}, \todo{get}, \SI{200}{hPa}. The profiles were optionally filtered based on whether there was CAPE $>$ \SI{500}{J.kg^{-1}} or grid-scale ascent (w $>$ \SI{0}{m.s^{-1}}. To group the profiles, I turned each pair of $u$ and $v$ profiles into one sample with 12 values or dimensions, and ran a Principal Component Analysis algorithm on it to reduce the number of dimensions to 5 (this explains over 90\% of the variance of the profiles). I then ran a k-means clustering algorithm to group the profiles.
+To find the shear profiles for classification, I ran a standard Met Office GA7.0 run (vn10.7 \todo{check}), at N96 resolution. Initially, I ran this for one day, and took results from the tropics (defined as \ang{30}N - \ang{30}S) at a frequency of every \SI{6}{hr}. I outputed the $u$ and $v$ profiles on 6 pressure levels of: \SI{900}, \todo{get}, \SI{200}{hPa}. The profiles were optionally filtered based on whether there was CAPE $>$ \SI{500}{J.kg^{-1}} or grid-scale ascent (w $>$ \SI{0}{m.s^{-1}}. To group the profiles, I turned each pair of $u$ and $v$ profiles into one sample with 12 values or dimensions, and ran a Principal Component Analysis algorithm on it to reduce the number of dimensions to 5 (this explains over 90\% of the variance of the profiles). I then ran a k-means clustering algorithm to group the profiles.
 
 Figure \ref{fig:shear_profiles} shows the results from this analysis, with the profiles being filtered on CAPE $>$ \SI{500}{J.kg^{-1}}. Subfigure (a) shows a reasonably successful grouping, the low level shear is aligned for both wind components and the spread between the profiles is not too large. Subfigure (b) shows a group of profiles where the process has been less successful; there is large spread between the different profiles at all levels and important features in some profiles are not seen in others.
 
@@ -162,14 +162,24 @@ From here I could use the BRN to affect the deep convection scheme. The change w
 \section{Future work}
 \label{sec:Future work}
 
-\subsection{Shear climatology in the UM}
+An updated timeplan for my future work is set out in a Gantt chart in the appendix. My aim is to have finished the high-resolution modelling by the start of April 2018, in time for EGU (8\ts{th} - 13\ts{th} April). I will also have a paper written up on this work by the next MC (around end of June 2018).
+
+\subsection{Shear classification and climatology in the UM}
 \label{sec:Shear climatology in the UM}
+
+Continuing the work I have done with the classification of shear profiles, I will extend it to make a shear climatology. This will serve as a basis for modifying the UM's convection scheme based on the shear, by getting a handle on where and  when the various shear profiles are present and also for how to detect and classify these profiles. It will include some experimentation with the best way of performing the classification, and is therefore subject to perhaps the most uncertainly in my future plans. The remaining sections also depend on this, so it seems like a good idea to tackle this first. One of the results from this will be a set of RWPs, which will be useful for subsequent work. However, if it does not work as expected, or the profiles are not usable because e.g. the groups produced are not representative enough, I have the fallback option of using the work that I have already done with linearly scaled shear profiles along with arguments about how to diagnose similar states in the model based on BRN.
 
 \subsection{High-resolution idealized modelling}
 \label{sec:High-resolution idealized modelling}
 
+The first part of this will be a repeat of the work I did for MC IV's companion paper, using the most up-to-date version of the idealized UM with Adrian Lock's `optimum' settings, which are meant to have improved moisture conservation. In the first section, I will run simulations at \SI{2}{km} (as before), \SI{1}{km} and \SI{250}{m} resolution with linearly scaled shear profiles based on the profile that is known to produce organization. The analysis will include everything in the previous companion paper, as well as a section of cloud lifetime statistics, improved analysis of the thermodynamic state, and outputting of the diagnosed momentum transport by convection. It will hopefully include analysis of the entrainment in the model, a better metric for organization and a mechanism analysis of what causes the increased lifetime (through separation of the updraught and downdraught).
+
+Ideally, I will also use the RWPs from the previous section. The RWPs can be used to drive idealized simulations in the same way that the linearly scaled shear profiles can. The above measures can all be used with these profiles to generate behavioural responses to each of the RWPs, that can then be used in the convection scheme along with the classification into RWPs of a given grid-column profile.. 
+
 \subsection{Writing 1}
 \label{sec:Writing 1}
+
+I will write up the work I have done on shear climatologies in the UM and high-resolution modelling as a paper. This will include all the analysis from the previous two sections. It will be complete or very close to complete by the next MC, and will therefore be a good indicator of progress at that I am sticking to the plan.
 
 \section{Training record}
 \label{sec:Training record}
