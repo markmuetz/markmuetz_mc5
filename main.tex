@@ -32,8 +32,8 @@
 
 \begin{document}
 
-% \newgeometry{margin=2.0cm}
-\newgeometry{margin=2.2cm, top=2.5cm}
+\newgeometry{margin=2.0cm}
+\newgeometry{margin=2.0cm, top=2.0cm}
 
 \begin{center}
     \Large{\textbf{Monitoring Committee Report V}}\\[0.1cm]
@@ -83,7 +83,7 @@ Overall, I am pleased with how my PhD is going. Although I have not accomplished
 
 % Switched all to present tense.
 
-To start to get to grips with some work looking at wind profile and shear climatologies, I read \cite{houchi2010comparison}. They look into the zonal and meridional profiles of $u$ and $\frac{du}{dz}$ in both radiosonde observations and ECMWF \SI{12}{hr} forecasts. Although the motivation of the work is different from mine, they are interested in using the ECMWF forecasts to model how a satellite will perform, some of the ideas may be useful and it is something to compare against. However, they are looking at comparisons between co-located observations and interpolated model output, and they are interested in a greater depth of atmosphere, from the surface to \SI{35}{km}.
+% To start to get to grips with some work looking at wind profile and shear climatologies, I read \cite{houchi2010comparison}. They look into the zonal and meridional profiles of $u$ and $\frac{du}{dz}$ in both radiosonde observations and ECMWF \SI{12}{hr} forecasts. Although the motivation of the work is different from mine, they are interested in using the ECMWF forecasts to model how a satellite will perform, some of the ideas may be useful and it is something to compare against. However, they are looking at comparisons between co-located observations and interpolated model output, and they are interested in a greater depth of atmosphere, from the surface to \SI{35}{km}.
 
 In \cite{mapes2011parameterizing}, they look at the link between entrainment as formulated in a convective parametrization and the behaviour of the model. They identify the ``entrainment dilemma'', whereby a value of the entrainment rate that is too high leads to a model that is unstable to explicit convection, and conversely, an entrainment rate that is too low leads to too much deep convection, and a corresponding deterioration of the space and time distributions and variability. To ameliorate this situation, they develop a 2D dimensionless prognostic \textit{org} that represents the subgrid organization of a given grid-column. \textit{org} is advected around by mass-weighted mean of the wind field over the convective layer, which defines an effective steering level. Rain evaporation is taken as a source of \textit{org}. \textit{org} acts to reduce the entrainment rate in a grid-column, thereby acting as a time-lagged positive feedback on the parametrized convection. 
 
@@ -145,7 +145,7 @@ This is a work in progress. I would like to continue this over the next couple o
     \subfloat[]{{\includegraphics[width=7cm]{figs/atmos_None_shear_profile_classification_analysis_use_pca-True_filt-cape_profile-5_n_clust-19_ci-12.png} }}%
     \qquad
     \subfloat[]{{\includegraphics[width=7cm]{figs/atmos_None_shear_profile_classification_analysis_use_pca-True_filt-cape_profile-5_n_clust-19_ci-17.png} }}%
-    \caption{\todo{invert y-axis!} Shear profiles classified into different RWPs, $u$ is blue and $v$ is red. (a) shows reasonable classification success with relatively distinct profiles classified together, whereas (b) shows large variation between the individual profiles.}%
+    \caption{Shear profiles classified into different RWPs, $u$ is blue and $v$ is red. (a) shows reasonable classification success with relatively distinct profiles classified together, whereas (b) shows large variation between the individual profiles.}%
     \label{fig:shear_profiles}%
 \end{figure}
 
@@ -190,7 +190,11 @@ I will also start on my thesis, working on the introduction and literature revie
 
 % CMSS
 % RRDPs
-I took part in the biennial NCAS Climate Modelling Summer School, in Cambridge from the 11\ts{th} to the 15\ts{th} of September. I helped out in Hilary Weller's Introduction to Numerical Modelling classes, which were broadly similar to her MSc classes although condensed down from one term to one week. There were a wide range of abilities, from people who had never used Python to people doing PhDs on numerical techniques and people with a strong grasp of Python. This kept me on my toes and was a great experience of a fast-paced learning environment. I took part in judging the poster competition, and now appreciate how difficult it is to try and see 30 posters in an hour and a half. I also attended several of the lectures, so was able to learn a bit about how e.g. ocean modelling is done.
+I took part in the biennial NCAS Climate Modelling Summer School, in Cambridge from the 11\ts{th} to the 15\ts{th} of September. I helped out in Hilary Weller's Introduction to Numerical Modelling classes, which were broadly similar to her MSc classes although condensed down from one term to one week. 
+% There were a wide range of abilities, from people who had never used Python to people doing PhDs on numerical techniques and people with a strong grasp of Python. 
+% This kept me on my toes and was a great experience of a fast-paced learning environment. 
+I took part in judging the poster competition, and now appreciate how difficult it is to try and see 30 posters in an hour and a half. 
+% I also attended several of the lectures, so was able to learn a bit about how e.g. ocean modelling is done.
 
 I completed 2 of my 3 RRDPs, going to courses on ``Open access research research publication'' in Reading, learning what the requirements are for me as a NERC funded student. I also went to an ``Introduction to impact'', learning what the definition of impact is and what is required in a ``Pathways to Impact'' assessment. 
 
@@ -202,7 +206,8 @@ I spent most of November at the Met Office, working with convective parametrizat
 \subsection{Posters, presentations and conferences}
 \label{sec:presentations}
 % Cambridge plenary
-I went to the Cambridge ParaCon plenary in July. There was an interesting talk by Leif Denby on trying to reduce some of the arbitrariness of using thresholds for diagnosing clouds. He is using a technique based on creating networks of connected points based on when certain thresholds are crossed. The technique does not extend to tracking clouds over time though so is not yet suitable for me. There was another interesting talk by George Efstathiou, who was looking at simulation evidence for the multi-fluid approach, which is one of the novel approaches being investigated for convective parametrizations by ParaCon.
+I went to the Cambridge ParaCon plenary in July. There was an interesting talk by Leif Denby on trying to reduce some of the arbitrariness of using thresholds for diagnosing clouds. He is using a technique based on creating networks of connected points based on when certain thresholds are crossed. The technique does not extend to tracking clouds over time though so is not yet suitable for me. 
+% There was another interesting talk by George Efstathiou, who was looking at simulation evidence for the multi-fluid approach, which is one of the novel approaches being investigated for convective parametrizations by ParaCon.
 
 % Delft
 I attended an international conference in Delft: ``The Future of Cumulus Parametrization'', presenting a poster and attending the talks. The talks ranged from the history of cumulus parametrizations, to in-depth approaches used by various modelling centres across the world. There was a running discussion over the course of the week on whether cumulus parametrizations were needed at all, kicked off provocatively by Bjorn Stevens. (Spoiler - they are and will be for a while!) The themes of stochasticity and organization were well represented, and I picked up many interesting ideas to follow as well as getting a sense of what the state of the art was for cumulus parametrizations. The break-out groups and poster sessions were a good opportunity to interact with a wide variety of people involved in cumulus parametrizations.
